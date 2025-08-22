@@ -56,7 +56,8 @@ function initApp() {
             var date = new Date();
             var endDate = new Date(2026, 3, 2);
             if(date < endDate){
-              var popUpPic = "images/popup/popupImage-1.jpg";
+              var popUpImgNum = getPopUpImgNum();
+              var popUpPic = `images/popup/popupImage-${popUpImgNum}.jpg`;
               var popUpUrl = "https://marathon-paris.dossards-solidaires.org/fundraisers/greg-roques?utm_campaign=dossards-solidaires&utm_content=new_action&utm_medium=email-auto&utm_source=kentaa";
               setTimeout(function(){
                 var popUp = document.getElementById("popUp")
@@ -118,7 +119,7 @@ function closePopUp(){
   popUp.remove()
 }
 
-function imgFadeIn(el){
+function imgFadeIn(){
   var popImg = document.getElementById("popUpImage")
   popImg.classList.add("imgFadeIn")
 
@@ -126,6 +127,12 @@ function imgFadeIn(el){
   setTimeout(function(){
     popUp.remove()
   },11000)
+}
+
+function getPopUpImgNum(){
+  var month = new Date().getMonth() + 1;
+  var imgNum = month % 2 === 0 ? 1 : 2;
+  return imgNum
 }
 
 window.onpageshow = () => {
