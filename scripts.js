@@ -64,13 +64,10 @@ function initApp() {
                 <div id="popUp" class="popUpFrame">
                 <div id="popUpCloseButton" class="popUpCloseButton" onClick="closePopUp()">X</div>
                 <a href=${popUpUrl} target="_blank">
-                  <img id="popUpImage" class="popUpImage" alt="Pop Up Message" src="${popUpPic}"/>
+                  <img id="popUpImage" onload="imgFadeIn()" class="popUpImage" alt="Pop Up Message" src="${popUpPic}"/>
                 </a>
                 </div>
                 `
-                setTimeout(function(){
-                  popUp.remove()
-                },11000)
               },1000)
             }
           }
@@ -119,6 +116,16 @@ function pageScroller(e, loc) {
 function closePopUp(){
   var popUp = document.getElementById('popUp')
   popUp.remove()
+}
+
+function imgFadeIn(el){
+  var popImg = document.getElementById("popUpImage")
+  popImg.classList.add("imgFadeIn")
+
+  var popUp = document.getElementById("popUp")
+  setTimeout(function(){
+    popUp.remove()
+  },11000)
 }
 
 window.onpageshow = () => {
